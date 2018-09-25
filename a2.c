@@ -5,8 +5,22 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdlib.h>
 
-char word[50];
+char word[100];
+
+void findWord(char *word , char *file){
+    char line[1024];
+    FILE* fp = fopen(file, "r");
+    while (fgets(line , sizeof(line) , fp )!= NULL)
+    {
+        if (strstr(line , word )!= NULL)
+        {
+            printf("%s\n", file);
+            break;
+        }
+    }
+}
 
 int main(int argc, char* argv[]) {
 
@@ -18,7 +32,8 @@ int main(int argc, char* argv[]) {
 
     strcpy (word,argv[1]); // assign search word to global variable
 
-    for (int i = 2; i < argc; i++) {
+    // This for loop checks if the given files exist
+    /*for (int i = 2; i < argc; i++) {
 
         int result;
         const char *filename = argv[i];
@@ -30,7 +45,11 @@ int main(int argc, char* argv[]) {
         else {
             printf("ERROR: %s doesn't exist!\n",filename);
         }
-    }
+    }*/
+
+    findWord("hello", "file1.txt");
+    findWord("hello", "file2.txt");
+    findWord("hello", "file3.txt");
 
 
 
