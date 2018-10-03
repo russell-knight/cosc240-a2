@@ -8,21 +8,23 @@ The following program is used to search through text files in to see if they con
 How To Run
 -----------
 
-To run the program simply execute the shell script. Followed by the word you wish to search for and the files you wish to search through.
+To run the program simply execute the shell script. Followed by the word you wish to search for and at least 1 file you wish to search through.
 
 e.g
 
-./run.sh example file1.txt file2.txt file3.txt
+	./run.sh example file1.txt file2.txt file3.txt
 
 The above will search through files file1.txt, file2.txt & file3.txt for an instance of the string "example".
 
 Example out put could be:
 
-/run.sh hello file1.txt file2.txt file3.txt
-file1.txt
-file3.txt
+	./run.sh hello file1.txt file2.txt file3.txt
+	file1.txt
+	file3.txt
 
 which would indicate the word "hello" was found in file1.txt & file3.txt
+
+The program will give an error if not enough arguments are passed to it.
 
 
 

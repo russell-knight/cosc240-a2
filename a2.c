@@ -1,5 +1,5 @@
 //
-// Created by thirdeyechai on 24/09/18.
+// Created by Russell Knight
 //
 
 #include <stdio.h>
@@ -9,9 +9,16 @@
 
 char word[100];
 
+/**
+ * findWord searches a file for an instance of a given string
+ * @param word the word to search for
+ * @param file the file to search through*/
 void findWord(char *word , char *file){
     char line[1024];
     FILE* fp = fopen(file, "r");
+    if (fp == NULL) {
+        return;
+    }
     while (fgets(line , sizeof(line) , fp )!= NULL)
     {
         if (strstr(line , word )!= NULL)
@@ -30,29 +37,20 @@ int main(int argc, char* argv[]) {
                "Check README for help on how to use the program\n");
     }
 
-    strcpy (word,argv[1]); // assign search word to global variable
+    strcpy (word,argv[1]); // assign search word to variable
 
-    // This for loop checks if the given files exist
-    /*for (int i = 2; i < argc; i++) {
+    for (int i = 2; i < argc; i++) {
 
-        int result;
-        const char *filename = argv[i];
-        result = access(filename, F_OK);
+        pid_t child;
+        child = fork();
 
-        if (result == 0) {
-            printf("%s exists!!\n",filename);
+        if (child) {
+            //Parent process
         }
         else {
-            printf("ERROR: %s doesn't exist!\n",filename);
+            findWord(word, argv[i]);
         }
-    }*/
-
-    findWord("hello", "file1.txt");
-    findWord("hello", "file2.txt");
-    findWord("hello", "file3.txt");
-
-
-
+    }
 
     return 0;
 }
