@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 
 char word[100];
 
@@ -46,9 +47,11 @@ int main(int argc, char* argv[]) {
 
         if (child) {
             //Parent process
+            //printf("in parent\n");
         }
         else {
             findWord(word, argv[i]);
+            _exit(1);
         }
     }
 
